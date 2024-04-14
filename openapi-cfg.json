@@ -1,0 +1,7 @@
+{
+  "isGoSubmodul": true,
+  "hideGenerationTimestamp": true,
+  "enumClassPrefix": true,
+  "withGoMod": false,
+  "disallowAdditionalPropertiesIfNotPresent": false
+}

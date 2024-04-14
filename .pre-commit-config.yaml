@@ -1,0 +1,20 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v3.2.0
+  hooks:
+  - id: check-yaml
+  - id: check-added-large-files
+- repo: https://github.com/golangci/golangci-lint
+  rev: v1.56.2
+  hooks:
+    - id: golangci-lint-full
+- repo: https://github.com/TekWizely/pre-commit-golang
+  rev: "v1.0.0-rc.1"
+  hooks:
+    - id: go-test-mod
+    - id: go-mod-tidy-repo
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.5.0
+  hooks:
+    - id: check-case-conflict
+    - id: check-merge-conflict
