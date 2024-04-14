@@ -10,11 +10,11 @@ import (
 type Client struct {
 	*baseClient
 
-	AgentsAPI    *agentsAPI
-	SystemsAPI   *systemsAPI
-	FleetAPI     *fleetAPI
-	ContractsAPI *contractsAPI
-	FactionsAPI  *factionsAPI
+	AgentsAPI    *AgentsAPI
+	SystemsAPI   *SystemsAPI
+	FleetAPI     *FleetAPI
+	ContractsAPI *ContractsAPI
+	FactionsAPI  *FactionsAPI
 }
 
 // NewClient creates a new Spacetraders client
@@ -26,11 +26,11 @@ func NewClient(opts ...ClientOption) (*Client, error) {
 
 	c := &Client{
 		baseClient:   bc,
-		AgentsAPI:    &agentsAPI{bc},
-		SystemsAPI:   &systemsAPI{bc},
-		FleetAPI:     &fleetAPI{bc},
-		FactionsAPI:  &factionsAPI{bc},
-		ContractsAPI: &contractsAPI{bc},
+		AgentsAPI:    &AgentsAPI{bc},
+		SystemsAPI:   &SystemsAPI{bc},
+		FleetAPI:     &FleetAPI{bc},
+		FactionsAPI:  &FactionsAPI{bc},
+		ContractsAPI: &ContractsAPI{bc},
 	}
 
 	if len(opts) == 0 {

@@ -71,11 +71,11 @@ type service struct {
 	*baseClient
 }
 
-type agentsAPI service
-type systemsAPI service
-type fleetAPI service
-type contractsAPI service
-type factionsAPI service
+type AgentsAPI service
+type SystemsAPI service
+type FleetAPI service
+type ContractsAPI service
+type FactionsAPI service
 
 // Sleep for the given duration unless interrupted by a canceled Context
 func (s *baseClient) Sleep(ctx context.Context, wait time.Duration) error {

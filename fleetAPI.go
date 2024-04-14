@@ -10,12 +10,12 @@ import (
 )
 
 // ListShips is an alias for GetMyShips
-func (c *fleetAPI) ListShips(ctx context.Context) ([]*api.Ship, error) {
+func (c *FleetAPI) ListShips(ctx context.Context) ([]*api.Ship, error) {
 	return c.GetMyShips(ctx)
 }
 
 // GetMyShips returns a paginated list of all ships under your agent's ownership.
-func (c *fleetAPI) GetMyShips(ctx context.Context) ([]*api.Ship, error) {
+func (c *FleetAPI) GetMyShips(ctx context.Context) ([]*api.Ship, error) {
 	var (
 		out   []*api.Ship = make([]*api.Ship, 0, 10)
 		page  int32       = 1
@@ -51,7 +51,7 @@ func (c *fleetAPI) GetMyShips(ctx context.Context) ([]*api.Ship, error) {
 }
 
 // Purchase a ship
-func (c *fleetAPI) PurchaseShip(ctx context.Context,
+func (c *FleetAPI) PurchaseShip(ctx context.Context,
 	shipType api.ShipType, wpSym WaypointSymbol) (*api.PurchaseShip201ResponseData, error) {
 	purchaseShipRequest := api.NewPurchaseShipRequest(shipType, wpSym.String())
 
@@ -78,7 +78,7 @@ redo:
 }
 
 // GetMyShipFromSymbol returns data about a ship
-func (c *fleetAPI) GetMyShipFromSymbol(ctx context.Context, shipSymbol string) (*api.Ship, error) {
+func (c *FleetAPI) GetMyShipFromSymbol(ctx context.Context, shipSymbol string) (*api.Ship, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.GetMyShip(ctx, shipSymbol)
 redo:
@@ -102,7 +102,7 @@ redo:
 // OrbitShip attempts to move your ship into orbit at its current location.
 // The request will only succeed if your ship is capable of moving into orbit
 // at the time of the request.
-func (c *fleetAPI) OrbitShip(ctx context.Context, ship *api.Ship) error {
+func (c *FleetAPI) OrbitShip(ctx context.Context, ship *api.Ship) error {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.OrbitShip(ctx, ship.Symbol)
 redo:
@@ -125,7 +125,7 @@ redo:
 }
 
 // ShipRefine
-func (c *fleetAPI) ShipRefine(ctx context.Context, ship *api.Ship, produce api.TradeSymbol) (*api.ShipRefine201ResponseData, error) {
+func (c *FleetAPI) ShipRefine(ctx context.Context, ship *api.Ship, produce api.TradeSymbol) (*api.ShipRefine201ResponseData, error) {
 	wait := 1 * time.Second
 	srr := api.NewShipRefineRequest(string(produce))
 	req := c.c.FleetAPI.ShipRefine(ctx, ship.Symbol).ShipRefineRequest(*srr)
@@ -150,7 +150,7 @@ redo:
 }
 
 // CreateChart
-func (c *fleetAPI) CreateChart(ctx context.Context, ship *api.Ship) (*api.CreateChart201ResponseData, error) {
+func (c *FleetAPI) CreateChart(ctx context.Context, ship *api.Ship) (*api.CreateChart201ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.CreateChart(ctx, ship.Symbol)
 redo:
@@ -172,7 +172,7 @@ redo:
 }
 
 // UpdateCooldown returns cooldown data
-func (c *fleetAPI) UpdateCooldown(ctx context.Context, ship *api.Ship) error {
+func (c *FleetAPI) UpdateCooldown(ctx context.Context, ship *api.Ship) error {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.GetShipCooldown(ctx, ship.Symbol)
 redo:
@@ -198,7 +198,7 @@ redo:
 }
 
 // DockShip to a waypoint
-func (c *fleetAPI) DockShip(ctx context.Context, ship *api.Ship) error {
+func (c *FleetAPI) DockShip(ctx context.Context, ship *api.Ship) error {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.DockShip(ctx, ship.Symbol)
 redo:
@@ -221,7 +221,7 @@ redo:
 }
 
 // CreateSurvey returns new survey data
-func (c *fleetAPI) CreateSurvey(ctx context.Context, ship *api.Ship) (*api.CreateSurvey201ResponseData, error) {
+func (c *FleetAPI) CreateSurvey(ctx context.Context, ship *api.Ship) (*api.CreateSurvey201ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.CreateSurvey(ctx, ship.Symbol)
 redo:
@@ -244,7 +244,7 @@ redo:
 }
 
 // ExtractResources
-func (c *fleetAPI) ExtractResources(ctx context.Context, ship *api.Ship) (*api.ExtractResources201ResponseData, error) {
+func (c *FleetAPI) ExtractResources(ctx context.Context, ship *api.Ship) (*api.ExtractResources201ResponseData, error) {
 	wait := 1 * time.Second
 	erReq := api.NewExtractResourcesRequestWithDefaults()
 	req := c.c.FleetAPI.ExtractResources(ctx, ship.Symbol).ExtractResourcesRequest(*erReq)
@@ -274,7 +274,7 @@ redo:
 }
 
 // SiphonResources
-func (c *fleetAPI) SiphonResources(ctx context.Context, ship *api.Ship) (*api.SiphonResources201ResponseData, error) {
+func (c *FleetAPI) SiphonResources(ctx context.Context, ship *api.Ship) (*api.SiphonResources201ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.SiphonResources(ctx, ship.Symbol)
 redo:
@@ -302,7 +302,7 @@ redo:
 }
 
 // ExtractResourcesWithSurvey
-func (c *fleetAPI) ExtractResourcesWithSurvey(ctx context.Context, ship *api.Ship, survey *api.Survey) (*api.ExtractResources201ResponseData, error) {
+func (c *FleetAPI) ExtractResourcesWithSurvey(ctx context.Context, ship *api.Ship, survey *api.Survey) (*api.ExtractResources201ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.ExtractResourcesWithSurvey(ctx, ship.Symbol).Survey(*survey)
 redo:
@@ -332,7 +332,7 @@ redo:
 
 // Jettison Cargo ejects the given units of TradeSymbol.
 // If units is -1 all units are ejected
-func (c *fleetAPI) JettisonCargo(ctx context.Context, ship *api.Ship, good api.TradeSymbol, units int32) error {
+func (c *FleetAPI) JettisonCargo(ctx context.Context, ship *api.Ship, good api.TradeSymbol, units int32) error {
 	if units == -1 {
 		found := false
 		for _, inv := range ship.Cargo.Inventory {
@@ -368,7 +368,7 @@ redo:
 }
 
 // JumpShip
-func (c *fleetAPI) JumpShip(ctx context.Context, ship *api.Ship, wp string) (*api.JumpShip200ResponseData, error) {
+func (c *FleetAPI) JumpShip(ctx context.Context, ship *api.Ship, wp string) (*api.JumpShip200ResponseData, error) {
 	wait := 1 * time.Second
 	jsr := api.NewJumpShipRequest(wp)
 	req := c.c.FleetAPI.JumpShip(ctx, ship.Symbol).JumpShipRequest(*jsr)
@@ -395,7 +395,7 @@ redo:
 }
 
 // NavigateShip to a waypoint
-func (c *fleetAPI) NavigateShip(ctx context.Context, ship *api.Ship, waypoint string) (*api.NavigateShip200ResponseData, error) {
+func (c *FleetAPI) NavigateShip(ctx context.Context, ship *api.Ship, waypoint string) (*api.NavigateShip200ResponseData, error) {
 	nReq := api.NewNavigateShipRequest(waypoint)
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.NavigateShip(ctx, ship.Symbol).NavigateShipRequest(*nReq)
@@ -424,7 +424,7 @@ redo:
 }
 
 // PatchShipNav
-func (c *fleetAPI) PatchShipNav(ctx context.Context, ship *api.Ship, fm api.ShipNavFlightMode) error {
+func (c *FleetAPI) PatchShipNav(ctx context.Context, ship *api.Ship, fm api.ShipNavFlightMode) error {
 	wait := 1 * time.Second
 	psr := api.NewPatchShipNavRequest()
 	psr.SetFlightMode(fm)
@@ -453,7 +453,7 @@ redo:
 }
 
 // WarpShip
-func (c *fleetAPI) WarpShip(ctx context.Context, ship *api.Ship, wpSym WaypointSymbol) (*api.WarpShip200ResponseData, error) {
+func (c *FleetAPI) WarpShip(ctx context.Context, ship *api.Ship, wpSym WaypointSymbol) (*api.WarpShip200ResponseData, error) {
 	wait := 1 * time.Second
 	nsr := api.NewNavigateShipRequest(wpSym.String())
 	req := c.c.FleetAPI.WarpShip(ctx, ship.Symbol).NavigateShipRequest(*nsr)
@@ -479,7 +479,7 @@ redo:
 
 // SellCargo sells the given units of TradeSymbol at the local market.
 // If units is -1 all units are sold
-func (c *fleetAPI) SellCargo(ctx context.Context, ship *api.Ship, good api.TradeSymbol, units int32) (*api.SellCargo201ResponseData, error) {
+func (c *FleetAPI) SellCargo(ctx context.Context, ship *api.Ship, good api.TradeSymbol, units int32) (*api.SellCargo201ResponseData, error) {
 	if units == -1 {
 		found := false
 		for _, inv := range ship.Cargo.Inventory {
@@ -518,7 +518,7 @@ redo:
 }
 
 // Scan Systems
-func (c *fleetAPI) ScanSystems(ctx context.Context, ship *api.Ship) (*api.CreateShipSystemScan201ResponseData, error) {
+func (c *FleetAPI) ScanSystems(ctx context.Context, ship *api.Ship) (*api.CreateShipSystemScan201ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.CreateShipSystemScan(ctx, ship.Symbol)
 redo:
@@ -541,7 +541,7 @@ redo:
 }
 
 // Scan Waypoints
-func (c *fleetAPI) ScanWaypoints(ctx context.Context, ship *api.Ship) (*api.CreateShipWaypointScan201ResponseData, error) {
+func (c *FleetAPI) ScanWaypoints(ctx context.Context, ship *api.Ship) (*api.CreateShipWaypointScan201ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.CreateShipWaypointScan(ctx, ship.Symbol)
 redo:
@@ -564,7 +564,7 @@ redo:
 }
 
 // Scan Ships
-func (c *fleetAPI) ScanShips(ctx context.Context, ship *api.Ship) (*api.CreateShipShipScan201ResponseData, error) {
+func (c *FleetAPI) ScanShips(ctx context.Context, ship *api.Ship) (*api.CreateShipShipScan201ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.CreateShipShipScan(ctx, ship.Symbol)
 redo:
@@ -590,7 +590,7 @@ redo:
 
 // If fromCargo is false, fuel is bought from the local market.
 // If units<0, ship is refueled to the maximum.
-func (c *fleetAPI) RefuelShip(ctx context.Context, ship *api.Ship, fromCargo bool, units int32) (*api.RefuelShip200ResponseData, error) {
+func (c *FleetAPI) RefuelShip(ctx context.Context, ship *api.Ship, fromCargo bool, units int32) (*api.RefuelShip200ResponseData, error) {
 	rsr := api.NewRefuelShipRequest()
 	rsr.FromCargo = &fromCargo
 	if units > 0 {
@@ -619,7 +619,7 @@ redo:
 }
 
 // PurchaseCargo buys the given units of TradeSymbol at the local market.
-func (c *fleetAPI) PurchaseCargo(ctx context.Context, ship *api.Ship, good api.TradeSymbol, units int32) (*api.SellCargo201ResponseData, error) {
+func (c *FleetAPI) PurchaseCargo(ctx context.Context, ship *api.Ship, good api.TradeSymbol, units int32) (*api.SellCargo201ResponseData, error) {
 	wait := 1 * time.Second
 	purchaseCargoRequest := *api.NewPurchaseCargoRequest(good, units)
 	req := c.c.FleetAPI.PurchaseCargo(ctx, ship.Symbol).PurchaseCargoRequest(purchaseCargoRequest)
@@ -646,7 +646,7 @@ redo:
 
 // Transfer Cargo transfer the given units of TradeSymbol from source to to target.
 // If units is -1 all units are transferred.
-func (c *fleetAPI) TransferCargo(ctx context.Context, target, source *api.Ship, good api.TradeSymbol, units int32) error {
+func (c *FleetAPI) TransferCargo(ctx context.Context, target, source *api.Ship, good api.TradeSymbol, units int32) error {
 	if units == -1 {
 		found := false
 		for _, inv := range source.Cargo.Inventory {
@@ -696,7 +696,7 @@ redo:
 }
 
 // NegotiateContract
-func (c *fleetAPI) NegotiateContract(ctx context.Context, ship *api.Ship) (*api.Contract, error) {
+func (c *FleetAPI) NegotiateContract(ctx context.Context, ship *api.Ship) (*api.Contract, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.NegotiateContract(ctx, ship.Symbol)
 redo:
@@ -718,7 +718,7 @@ redo:
 }
 
 // GetMounts gets the mounts installed on a ship.
-func (c *fleetAPI) GetMounts(ctx context.Context, ship *api.Ship) ([]api.ShipMount, error) {
+func (c *FleetAPI) GetMounts(ctx context.Context, ship *api.Ship) ([]api.ShipMount, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.GetMounts(ctx, ship.Symbol)
 redo:
@@ -739,7 +739,7 @@ redo:
 }
 
 // InstallMount installs a mount on a ship.
-func (c *fleetAPI) InstallMount(ctx context.Context, ship *api.Ship, mountSym string) (*api.InstallMount201ResponseData, error) {
+func (c *FleetAPI) InstallMount(ctx context.Context, ship *api.Ship, mountSym string) (*api.InstallMount201ResponseData, error) {
 	wait := 1 * time.Second
 	imr := api.NewInstallMountRequest(mountSym)
 	req := c.c.FleetAPI.InstallMount(ctx, ship.Symbol).InstallMountRequest(*imr)
@@ -766,7 +766,7 @@ redo:
 }
 
 // RemoveMount removes a mount from a ship.
-func (c *fleetAPI) RemoveMount(ctx context.Context, ship *api.Ship, mountSym string) (*api.RemoveMount201ResponseData, error) {
+func (c *FleetAPI) RemoveMount(ctx context.Context, ship *api.Ship, mountSym string) (*api.RemoveMount201ResponseData, error) {
 	wait := 1 * time.Second
 	imr := api.NewRemoveMountRequest(mountSym)
 	req := c.c.FleetAPI.RemoveMount(ctx, ship.Symbol).RemoveMountRequest(*imr)
@@ -795,7 +795,7 @@ redo:
 // GetScrapShipValue gets the amount of value that will be returned when scrapping a ship.
 // The ship must be docked in a waypoint that has the Shipyard trait in order to use
 // this function.
-func (c *fleetAPI) GetScrapShipValue(ctx context.Context, ship *api.Ship) (*api.GetScrapShip200ResponseData, error) {
+func (c *FleetAPI) GetScrapShipValue(ctx context.Context, ship *api.Ship) (*api.GetScrapShip200ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.GetScrapShip(ctx, ship.Symbol)
 redo:
@@ -818,7 +818,7 @@ redo:
 // ScrapShip removes a ship from the game
 // The ship must be docked in a waypoint that has the Shipyard trait in order to use
 // this function.
-func (c *fleetAPI) ScrapShip(ctx context.Context, ship *api.Ship) (*api.ScrapShip200ResponseData, error) {
+func (c *FleetAPI) ScrapShip(ctx context.Context, ship *api.Ship) (*api.ScrapShip200ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.ScrapShip(ctx, ship.Symbol)
 redo:
@@ -841,7 +841,7 @@ redo:
 }
 
 // GetRepairShipCost
-func (c *fleetAPI) GetRepairShipCost(ctx context.Context, ship *api.Ship) (*api.RepairTransaction, error) {
+func (c *FleetAPI) GetRepairShipCost(ctx context.Context, ship *api.Ship) (*api.RepairTransaction, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.GetRepairShip(ctx, ship.Symbol)
 redo:
@@ -862,7 +862,7 @@ redo:
 }
 
 // RepairShip
-func (c *fleetAPI) RepairShip(ctx context.Context, ship *api.Ship) (*api.RepairShip200ResponseData, error) {
+func (c *FleetAPI) RepairShip(ctx context.Context, ship *api.Ship) (*api.RepairShip200ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.FleetAPI.RepairShip(ctx, ship.Symbol)
 redo:

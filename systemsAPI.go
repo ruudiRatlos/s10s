@@ -10,7 +10,7 @@ import (
 )
 
 // AllSystems returns a channel of all systems and the number of systems to be returned
-func (c *systemsAPI) AllSystems(ctx context.Context) (<-chan *api.System, int, error) {
+func (c *SystemsAPI) AllSystems(ctx context.Context) (<-chan *api.System, int, error) {
 	out := make(chan *api.System)
 	var (
 		page  int32 = 1
@@ -78,7 +78,7 @@ func (c *systemsAPI) AllSystems(ctx context.Context) (<-chan *api.System, int, e
 }
 
 // GetSystem returns the details of a system
-func (c *systemsAPI) GetSystem(ctx context.Context, systemSymbol string) (*api.System, error) {
+func (c *SystemsAPI) GetSystem(ctx context.Context, systemSymbol string) (*api.System, error) {
 	wait := 1 * time.Second
 	req := c.c.SystemsAPI.GetSystem(ctx, systemSymbol)
 redo:
@@ -99,7 +99,7 @@ redo:
 	return &res.Data, nil
 }
 
-func (c *systemsAPI) GetSystemWaypoints(ctx context.Context, sys SystemSymbol) ([]*api.Waypoint, error) {
+func (c *SystemsAPI) GetSystemWaypoints(ctx context.Context, sys SystemSymbol) ([]*api.Waypoint, error) {
 	var (
 		out   []*api.Waypoint = make([]*api.Waypoint, 0, 10)
 		page  int32           = 1
@@ -135,7 +135,7 @@ func (c *systemsAPI) GetSystemWaypoints(ctx context.Context, sys SystemSymbol) (
 }
 
 // GetWaypoint
-func (c *systemsAPI) GetWaypoint(ctx context.Context, wpSym WaypointSymbol) (*api.Waypoint, error) {
+func (c *SystemsAPI) GetWaypoint(ctx context.Context, wpSym WaypointSymbol) (*api.Waypoint, error) {
 	wait := 1 * time.Second
 	req := c.c.SystemsAPI.GetWaypoint(ctx, string(wpSym.SystemSymbol()), string(wpSym))
 redo:
@@ -160,7 +160,7 @@ redo:
 // Requires a waypoint that has the Marketplace trait to use.
 //
 // Send a ship to the waypoint to access trade good prices and recent transactions.
-func (c *systemsAPI) GetMarket(ctx context.Context, wpSym WaypointSymbol) (*api.Market, error) {
+func (c *SystemsAPI) GetMarket(ctx context.Context, wpSym WaypointSymbol) (*api.Market, error) {
 	wait := 1 * time.Second
 	system := wpSym.SystemSymbol()
 redo:
@@ -186,7 +186,7 @@ redo:
 // Requires a waypoint that has the Shipyard trait to use.
 //
 // Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
-func (c *systemsAPI) GetShipyard(ctx context.Context, wpSym WaypointSymbol) (*api.Shipyard, error) {
+func (c *SystemsAPI) GetShipyard(ctx context.Context, wpSym WaypointSymbol) (*api.Shipyard, error) {
 	wait := 1 * time.Second
 	req := c.c.SystemsAPI.GetShipyard(ctx, wpSym.SystemSymbol().String(), wpSym.String())
 redo:
@@ -209,7 +209,7 @@ redo:
 
 // GetJumpGate gets jump gate details for a waypoint.
 // Requires a waypoint of type JUMP_GATE to use.
-func (c *systemsAPI) GetJumpGate(ctx context.Context, wpSym WaypointSymbol) (*api.JumpGate, error) {
+func (c *SystemsAPI) GetJumpGate(ctx context.Context, wpSym WaypointSymbol) (*api.JumpGate, error) {
 	wait := 1 * time.Second
 	req := c.c.SystemsAPI.GetJumpGate(ctx, wpSym.SystemSymbol().String(), wpSym.String())
 redo:
@@ -232,7 +232,7 @@ redo:
 
 // GetConstruction gets construction details for a waypoint.
 // Requires a waypoint with a property of isUnderConstruction to be true.
-func (c *systemsAPI) GetConstruction(ctx context.Context, wp *api.Waypoint) (*api.Construction, error) {
+func (c *SystemsAPI) GetConstruction(ctx context.Context, wp *api.Waypoint) (*api.Construction, error) {
 	wait := 1 * time.Second
 	req := c.c.SystemsAPI.GetConstruction(ctx, wp.SystemSymbol, wp.Symbol)
 redo:
@@ -258,7 +258,7 @@ redo:
 //
 // The good must be in your ship's cargo. The good will be removed from
 // your ship's cargo and added to the construction site's materials.
-func (c *systemsAPI) SupplyConstruction(ctx context.Context, ship *api.Ship, good *api.TradeSymbol, units int32) (*api.SupplyConstruction201ResponseData, error) {
+func (c *SystemsAPI) SupplyConstruction(ctx context.Context, ship *api.Ship, good *api.TradeSymbol, units int32) (*api.SupplyConstruction201ResponseData, error) {
 	wait := 1 * time.Second
 	scRequest := api.NewSupplyConstructionRequest(ship.Symbol, string(*good), units)
 	req := c.c.SystemsAPI.SupplyConstruction(ctx, ship.Nav.SystemSymbol, ship.Nav.WaypointSymbol).

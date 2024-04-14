@@ -10,7 +10,7 @@ import (
 )
 
 // ListFactions returns a list of all factions in the game.
-func (c *factionsAPI) ListFactions(ctx context.Context) ([]*api.Faction, error) {
+func (c *FactionsAPI) ListFactions(ctx context.Context) ([]*api.Faction, error) {
 	var (
 		out   []*api.Faction = make([]*api.Faction, 0, 20)
 		page  int32          = 1
@@ -45,7 +45,7 @@ func (c *factionsAPI) ListFactions(ctx context.Context) ([]*api.Faction, error) 
 }
 
 // GetFaction returns the details of a faction
-func (c *factionsAPI) GetFaction(ctx context.Context, factionSymbol string) (*api.Faction, error) {
+func (c *FactionsAPI) GetFaction(ctx context.Context, factionSymbol string) (*api.Faction, error) {
 	wait := 1 * time.Second
 	req := c.c.FactionsAPI.GetFaction(ctx, factionSymbol)
 redo:

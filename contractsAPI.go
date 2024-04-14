@@ -10,7 +10,7 @@ import (
 )
 
 // ListContracts returns a list of all your contracts.
-func (c *contractsAPI) ListContracts(ctx context.Context) ([]*api.Contract, error) {
+func (c *ContractsAPI) ListContracts(ctx context.Context) ([]*api.Contract, error) {
 	var (
 		out   []*api.Contract = make([]*api.Contract, 0, 20)
 		page  int32           = 1
@@ -46,7 +46,7 @@ func (c *contractsAPI) ListContracts(ctx context.Context) ([]*api.Contract, erro
 }
 
 // GetContract returns data about a contract by ID
-func (c *contractsAPI) GetContract(ctx context.Context, contractID string) (*api.Contract, error) {
+func (c *ContractsAPI) GetContract(ctx context.Context, contractID string) (*api.Contract, error) {
 	wait := 1 * time.Second
 	req := c.c.ContractsAPI.GetContract(ctx, contractID)
 redo:
@@ -70,7 +70,7 @@ redo:
 // AcceptContract accepts a contract by ID
 // You can only accept contracts that were offered to you, were not accepted yet,
 // and whose deadlines has not passed yet.
-func (c *contractsAPI) AcceptContract(ctx context.Context, contract *api.Contract) (*api.AcceptContract200ResponseData, error) {
+func (c *ContractsAPI) AcceptContract(ctx context.Context, contract *api.Contract) (*api.AcceptContract200ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.ContractsAPI.AcceptContract(ctx, contract.Id)
 redo:
@@ -93,7 +93,7 @@ redo:
 }
 
 // DeliverCargo returns data about a contract
-func (c *contractsAPI) DeliverContract(ctx context.Context, contract *api.Contract, ship *api.Ship, good api.TradeSymbol, units int32) (*api.DeliverContract200ResponseData, error) {
+func (c *ContractsAPI) DeliverContract(ctx context.Context, contract *api.Contract, ship *api.Ship, good api.TradeSymbol, units int32) (*api.DeliverContract200ResponseData, error) {
 	wait := 1 * time.Second
 	dcr := api.NewDeliverContractRequest(ship.Symbol, string(good), units)
 	req := c.c.ContractsAPI.DeliverContract(ctx, contract.Id).DeliverContractRequest(*dcr)
@@ -119,7 +119,7 @@ redo:
 
 // FulfillContract fulfills a contract.
 // Can only be used on contracts that have all of their delivery terms fulfilled.
-func (c *contractsAPI) FulfillContract(ctx context.Context, contract *api.Contract) (*api.AcceptContract200ResponseData, error) {
+func (c *ContractsAPI) FulfillContract(ctx context.Context, contract *api.Contract) (*api.AcceptContract200ResponseData, error) {
 	wait := 1 * time.Second
 	req := c.c.ContractsAPI.FulfillContract(ctx, contract.Id)
 redo:

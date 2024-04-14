@@ -10,7 +10,7 @@ import (
 )
 
 // GetMyAgent
-func (aa *agentsAPI) GetMyAgent(ctx context.Context) (*api.Agent, error) {
+func (aa *AgentsAPI) GetMyAgent(ctx context.Context) (*api.Agent, error) {
 	wait := 1 * time.Second
 	req := aa.c.AgentsAPI.GetMyAgent(ctx)
 redo:
@@ -33,7 +33,7 @@ redo:
 }
 
 // AllAgents returns a channel of all agents and the number of agents to be returned
-func (c *agentsAPI) AllAgents(ctx context.Context) (<-chan *api.Agent, int, error) {
+func (c *AgentsAPI) AllAgents(ctx context.Context) (<-chan *api.Agent, int, error) {
 	out := make(chan *api.Agent)
 	var (
 		page  int32 = 1
@@ -101,7 +101,7 @@ func (c *agentsAPI) AllAgents(ctx context.Context) (<-chan *api.Agent, int, erro
 }
 
 // GetPublicAgent
-func (aa *agentsAPI) GetPublicAgent(ctx context.Context, agentSym string) (*api.Agent, error) {
+func (aa *AgentsAPI) GetPublicAgent(ctx context.Context, agentSym string) (*api.Agent, error) {
 	wait := 1 * time.Second
 	req := aa.c.AgentsAPI.GetAgent(ctx, agentSym)
 redo:
