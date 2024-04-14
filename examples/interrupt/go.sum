@@ -1,0 +1,4 @@
+github.com/phsym/console-slog v0.3.1 h1:Fuzcrjr40xTc004S9Kni8XfNsk+qrptQmyR+wZw9/7A=
+github.com/phsym/console-slog v0.3.1/go.mod h1:oJskjp/X6e6c0mGpfP8ELkfKUsrkDifYRAqJQgmdDS0=
+github.com/ruudiRatlos/s10s v0.0.0-20240414135832-aa8ba6bbf80f h1:06lEGHPF9xxpLMTcLOfrTcb28ib7po3NzXhGONhbKXM=
+github.com/ruudiRatlos/s10s v0.0.0-20240414135832-aa8ba6bbf80f/go.mod h1:QRPuaC6VaTwU7i8x/aw0yi56E2pbzmJN6mkPEA4+Yvk=
