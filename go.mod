@@ -2,10 +2,7 @@ module github.com/ruudiRatlos/s10s
 
 go 1.22.1
 
-require (
-	github.com/stretchr/testify v1.9.0
-	golang.org/x/exp v0.0.0-20240325151524-a685a6edb6d8
-)
+require github.com/stretchr/testify v1.9.0
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect

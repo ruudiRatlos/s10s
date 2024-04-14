@@ -1,6 +1,6 @@
-# spacetracders.io Go SDK
+# spacetraders.io Go SDK
 
-This is a basic Go client SDK for [spacetraders.io](spacetraders.io).
+This is a basic Go client SDK for [spacetraders.io](https://spacetraders.io).
 
 ## API Deviations
 
@@ -25,7 +25,7 @@ with one API call.
 ### GetScrapShip
 GET https://api.spacetraders.io/v2/my/ships/{shipSymbol}/scrap was renamed to GetScrapShipValue
 
-## regenerate client from OpenAPI
+## regenerate client from OpenAPI specification
 
 ```bash
 rm -r api
