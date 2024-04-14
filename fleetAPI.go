@@ -879,14 +879,15 @@ redo:
 	if err != nil {
 		return nil, fmt.Errorf("could not RepairShip: %w", err)
 	}
-	copyShipState(ship, &res.Data.Ship)
+	CopyShipState(ship, &res.Data.Ship)
 	c.emitShipChange(ctx, ship)
 	c.emitAgentChange(ctx, &res.Data.Agent)
 	c.emitRepairTransaction(ctx, &res.Data.Transaction)
 	return &res.Data, nil
 }
 
-func copyShipState(to, from *api.Ship) {
+// CopyShipState changes all public properties of to to the values of from
+func CopyShipState(to, from *api.Ship) {
 	to.Cargo = from.Cargo
 	to.Cooldown = from.Cooldown
 	to.Crew = from.Crew
