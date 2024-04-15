@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -19,7 +19,7 @@ import (
 // checks if the Market type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Market{}
 
-// Market 
+// Market
 type Market struct {
 	// The symbol of the market. The symbol is the same as the waypoint where the market is located.
 	Symbol string `json:"symbol"`
@@ -32,7 +32,7 @@ type Market struct {
 	// The list of recent transactions at this market. Visible only when a ship is present at the market.
 	Transactions []MarketTransaction `json:"transactions,omitempty"`
 	// The list of goods that are traded at this market. Visible only when a ship is present at the market.
-	TradeGoods []MarketTradeGood `json:"tradeGoods,omitempty"`
+	TradeGoods           []MarketTradeGood `json:"tradeGoods,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -220,7 +220,7 @@ func (o *Market) SetTradeGoods(v []MarketTradeGood) {
 }
 
 func (o Market) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -263,10 +263,10 @@ func (o *Market) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -332,5 +332,3 @@ func (v *NullableMarket) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

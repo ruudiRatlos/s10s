@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -22,8 +22,8 @@ var _ MappedNullable = &Waypoint{}
 // Waypoint A waypoint is a location that ships can travel to such as a Planet, Moon or Space Station.
 type Waypoint struct {
 	// The symbol of the waypoint.
-	Symbol string `json:"symbol"`
-	Type WaypointType `json:"type"`
+	Symbol string       `json:"symbol"`
+	Type   WaypointType `json:"type"`
 	// The symbol of the system.
 	SystemSymbol string `json:"systemSymbol"`
 	// Relative position of the waypoint on the system's x axis. This is not an absolute position in the universe.
@@ -33,15 +33,15 @@ type Waypoint struct {
 	// Waypoints that orbit this waypoint.
 	Orbitals []WaypointOrbital `json:"orbitals"`
 	// The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined.
-	Orbits *string `json:"orbits,omitempty"`
+	Orbits  *string          `json:"orbits,omitempty"`
 	Faction *WaypointFaction `json:"faction,omitempty"`
 	// The traits of the waypoint.
 	Traits []WaypointTrait `json:"traits"`
 	// The modifiers of the waypoint.
 	Modifiers []WaypointModifier `json:"modifiers,omitempty"`
-	Chart *Chart `json:"chart,omitempty"`
+	Chart     *Chart             `json:"chart,omitempty"`
 	// True if the waypoint is under construction.
-	IsUnderConstruction bool `json:"isUnderConstruction"`
+	IsUnderConstruction  bool `json:"isUnderConstruction"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -393,7 +393,7 @@ func (o *Waypoint) SetIsUnderConstruction(v bool) {
 }
 
 func (o Waypoint) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -450,10 +450,10 @@ func (o *Waypoint) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -525,5 +525,3 @@ func (v *NullableWaypoint) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

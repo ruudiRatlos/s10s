@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -20,13 +20,12 @@ import (
 	"strings"
 )
 
-
 // AgentsAPIService AgentsAPI service
 type AgentsAPIService service
 
 type ApiGetAgentRequest struct {
-	ctx context.Context
-	ApiService *AgentsAPIService
+	ctx         context.Context
+	ApiService  *AgentsAPIService
 	agentSymbol string
 }
 
@@ -39,26 +38,27 @@ GetAgent Get Public Agent
 
 Fetch agent details.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentSymbol The agent symbol
- @return ApiGetAgentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentSymbol The agent symbol
+	@return ApiGetAgentRequest
 */
 func (a *AgentsAPIService) GetAgent(ctx context.Context, agentSymbol string) ApiGetAgentRequest {
 	return ApiGetAgentRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		agentSymbol: agentSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetMyAgent200Response
+//
+//	@return GetMyAgent200Response
 func (a *AgentsAPIService) GetAgentExecute(r ApiGetAgentRequest) (*GetMyAgent200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetMyAgent200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetMyAgent200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgent")
@@ -128,10 +128,10 @@ func (a *AgentsAPIService) GetAgentExecute(r ApiGetAgentRequest) (*GetMyAgent200
 }
 
 type ApiGetAgentsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AgentsAPIService
-	page *int32
-	limit *int32
+	page       *int32
+	limit      *int32
 }
 
 // What entry offset to request
@@ -155,24 +155,25 @@ GetAgents List Agents
 
 Fetch agents details.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAgentsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAgentsRequest
 */
 func (a *AgentsAPIService) GetAgents(ctx context.Context) ApiGetAgentsRequest {
 	return ApiGetAgentsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetAgents200Response
+//
+//	@return GetAgents200Response
 func (a *AgentsAPIService) GetAgentsExecute(r ApiGetAgentsRequest) (*GetAgents200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetAgents200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetAgents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgents")
@@ -253,7 +254,7 @@ func (a *AgentsAPIService) GetAgentsExecute(r ApiGetAgentsRequest) (*GetAgents20
 }
 
 type ApiGetMyAgentRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AgentsAPIService
 }
 
@@ -266,24 +267,25 @@ GetMyAgent Get Agent
 
 Fetch your agent's details.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetMyAgentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetMyAgentRequest
 */
 func (a *AgentsAPIService) GetMyAgent(ctx context.Context) ApiGetMyAgentRequest {
 	return ApiGetMyAgentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetMyAgent200Response
+//
+//	@return GetMyAgent200Response
 func (a *AgentsAPIService) GetMyAgentExecute(r ApiGetMyAgentRequest) (*GetMyAgent200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetMyAgent200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetMyAgent200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetMyAgent")

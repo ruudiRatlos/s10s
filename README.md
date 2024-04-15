@@ -39,6 +39,7 @@ openapi-generator generate -g go -i "https://stoplight.io/api/v1/projects/spacet
 
 # fix bug in openapi-generator when generating into a submodule
 gfind api/ -type f -print0 | xargs -0 -n 1 perl -i -pe 's!openapiclient "github.com/ruudiRatlos/s10s"!openapiclient "github.com/ruudiRatlos/s10s/api"!'
+go fmt ./api
 ```
 
 ## Release

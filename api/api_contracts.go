@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -20,12 +20,11 @@ import (
 	"strings"
 )
 
-
 // ContractsAPIService ContractsAPI service
 type ContractsAPIService service
 
 type ApiAcceptContractRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ContractsAPIService
 	contractId string
 }
@@ -37,30 +36,31 @@ func (r ApiAcceptContractRequest) Execute() (*AcceptContract200Response, *http.R
 /*
 AcceptContract Accept Contract
 
-Accept a contract by ID. 
+Accept a contract by ID.
 
 You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param contractId The contract ID to accept.
- @return ApiAcceptContractRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param contractId The contract ID to accept.
+	@return ApiAcceptContractRequest
 */
 func (a *ContractsAPIService) AcceptContract(ctx context.Context, contractId string) ApiAcceptContractRequest {
 	return ApiAcceptContractRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		contractId: contractId,
 	}
 }
 
 // Execute executes the request
-//  @return AcceptContract200Response
+//
+//	@return AcceptContract200Response
 func (a *ContractsAPIService) AcceptContractExecute(r ApiAcceptContractRequest) (*AcceptContract200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AcceptContract200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AcceptContract200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.AcceptContract")
@@ -130,13 +130,12 @@ func (a *ContractsAPIService) AcceptContractExecute(r ApiAcceptContractRequest) 
 }
 
 type ApiDeliverContractRequest struct {
-	ctx context.Context
-	ApiService *ContractsAPIService
-	contractId string
+	ctx                    context.Context
+	ApiService             *ContractsAPIService
+	contractId             string
 	deliverContractRequest *DeliverContractRequest
 }
 
-// 
 func (r ApiDeliverContractRequest) DeliverContractRequest(deliverContractRequest DeliverContractRequest) ApiDeliverContractRequest {
 	r.deliverContractRequest = &deliverContractRequest
 	return r
@@ -155,26 +154,27 @@ In order to use this API, a ship must be at the delivery location (denoted in th
 
 Cargo that was delivered will be removed from the ship's cargo.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param contractId The ID of the contract.
- @return ApiDeliverContractRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param contractId The ID of the contract.
+	@return ApiDeliverContractRequest
 */
 func (a *ContractsAPIService) DeliverContract(ctx context.Context, contractId string) ApiDeliverContractRequest {
 	return ApiDeliverContractRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		contractId: contractId,
 	}
 }
 
 // Execute executes the request
-//  @return DeliverContract200Response
+//
+//	@return DeliverContract200Response
 func (a *ContractsAPIService) DeliverContractExecute(r ApiDeliverContractRequest) (*DeliverContract200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DeliverContract200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeliverContract200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.DeliverContract")
@@ -246,7 +246,7 @@ func (a *ContractsAPIService) DeliverContractExecute(r ApiDeliverContractRequest
 }
 
 type ApiFulfillContractRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ContractsAPIService
 	contractId string
 }
@@ -260,26 +260,27 @@ FulfillContract Fulfill Contract
 
 Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param contractId The ID of the contract to fulfill.
- @return ApiFulfillContractRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param contractId The ID of the contract to fulfill.
+	@return ApiFulfillContractRequest
 */
 func (a *ContractsAPIService) FulfillContract(ctx context.Context, contractId string) ApiFulfillContractRequest {
 	return ApiFulfillContractRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		contractId: contractId,
 	}
 }
 
 // Execute executes the request
-//  @return FulfillContract200Response
+//
+//	@return FulfillContract200Response
 func (a *ContractsAPIService) FulfillContractExecute(r ApiFulfillContractRequest) (*FulfillContract200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FulfillContract200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FulfillContract200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.FulfillContract")
@@ -349,7 +350,7 @@ func (a *ContractsAPIService) FulfillContractExecute(r ApiFulfillContractRequest
 }
 
 type ApiGetContractRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ContractsAPIService
 	contractId string
 }
@@ -363,26 +364,27 @@ GetContract Get Contract
 
 Get the details of a contract by ID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param contractId The contract ID
- @return ApiGetContractRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param contractId The contract ID
+	@return ApiGetContractRequest
 */
 func (a *ContractsAPIService) GetContract(ctx context.Context, contractId string) ApiGetContractRequest {
 	return ApiGetContractRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		contractId: contractId,
 	}
 }
 
 // Execute executes the request
-//  @return GetContract200Response
+//
+//	@return GetContract200Response
 func (a *ContractsAPIService) GetContractExecute(r ApiGetContractRequest) (*GetContract200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetContract200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetContract200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetContract")
@@ -452,10 +454,10 @@ func (a *ContractsAPIService) GetContractExecute(r ApiGetContractRequest) (*GetC
 }
 
 type ApiGetContractsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ContractsAPIService
-	page *int32
-	limit *int32
+	page       *int32
+	limit      *int32
 }
 
 // What entry offset to request
@@ -479,24 +481,25 @@ GetContracts List Contracts
 
 Return a paginated list of all your contracts.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetContractsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetContractsRequest
 */
 func (a *ContractsAPIService) GetContracts(ctx context.Context) ApiGetContractsRequest {
 	return ApiGetContractsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetContracts200Response
+//
+//	@return GetContracts200Response
 func (a *ContractsAPIService) GetContractsExecute(r ApiGetContractsRequest) (*GetContracts200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetContracts200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetContracts200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetContracts")

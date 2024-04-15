@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -32,14 +32,13 @@ import (
 	"strings"
 	"time"
 	"unicode/utf8"
-
 )
 
 var (
 	JsonCheck       = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
 	XmlCheck        = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?xml)`)
 	queryParamSplit = regexp.MustCompile(`(^|&)([^&]+)`)
-	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
+	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
 // APIClient manages communication with the SpaceTraders API API v2.0.0
@@ -141,15 +140,15 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 	return nil
 }
 
-func parameterValueToString( obj interface{}, key string ) string {
+func parameterValueToString(obj interface{}, key string) string {
 	if reflect.TypeOf(obj).Kind() != reflect.Ptr {
 		return fmt.Sprintf("%v", obj)
 	}
-	var param,ok = obj.(MappedNullable)
+	var param, ok = obj.(MappedNullable)
 	if !ok {
 		return ""
 	}
-	dataMap,err := param.ToMap()
+	dataMap, err := param.ToMap()
 	if err != nil {
 		return ""
 	}
@@ -165,81 +164,81 @@ func parameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 		value = "null"
 	} else {
 		switch v.Kind() {
-			case reflect.Invalid:
-				value = "invalid"
+		case reflect.Invalid:
+			value = "invalid"
 
-			case reflect.Struct:
-				if t,ok := obj.(MappedNullable); ok {
-					dataMap,err := t.ToMap()
-					if err != nil {
-						return
-					}
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, dataMap, collectionType)
+		case reflect.Struct:
+			if t, ok := obj.(MappedNullable); ok {
+				dataMap, err := t.ToMap()
+				if err != nil {
 					return
 				}
-				if t, ok := obj.(time.Time); ok {
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339), collectionType)
-					return
-				}
-				value = v.Type().String() + " value"
-			case reflect.Slice:
-				var indValue = reflect.ValueOf(obj)
-				if indValue == reflect.ValueOf(nil) {
-					return
-				}
-				var lenIndValue = indValue.Len()
-				for i:=0;i<lenIndValue;i++ {
-					var arrayValue = indValue.Index(i)
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, arrayValue.Interface(), collectionType)
-				}
+				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, dataMap, collectionType)
 				return
-
-			case reflect.Map:
-				var indValue = reflect.ValueOf(obj)
-				if indValue == reflect.ValueOf(nil) {
-					return
-				}
-				iter := indValue.MapRange()
-				for iter.Next() {
-					k,v := iter.Key(), iter.Value()
-					parameterAddToHeaderOrQuery(headerOrQueryParams, fmt.Sprintf("%s[%s]", keyPrefix, k.String()), v.Interface(), collectionType)
-				}
+			}
+			if t, ok := obj.(time.Time); ok {
+				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339), collectionType)
 				return
-
-			case reflect.Interface:
-				fallthrough
-			case reflect.Ptr:
-				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, v.Elem().Interface(), collectionType)
+			}
+			value = v.Type().String() + " value"
+		case reflect.Slice:
+			var indValue = reflect.ValueOf(obj)
+			if indValue == reflect.ValueOf(nil) {
 				return
+			}
+			var lenIndValue = indValue.Len()
+			for i := 0; i < lenIndValue; i++ {
+				var arrayValue = indValue.Index(i)
+				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, arrayValue.Interface(), collectionType)
+			}
+			return
 
-			case reflect.Int, reflect.Int8, reflect.Int16,
-				reflect.Int32, reflect.Int64:
-				value = strconv.FormatInt(v.Int(), 10)
-			case reflect.Uint, reflect.Uint8, reflect.Uint16,
-				reflect.Uint32, reflect.Uint64, reflect.Uintptr:
-				value = strconv.FormatUint(v.Uint(), 10)
-			case reflect.Float32, reflect.Float64:
-				value = strconv.FormatFloat(v.Float(), 'g', -1, 32)
-			case reflect.Bool:
-				value = strconv.FormatBool(v.Bool())
-			case reflect.String:
-				value = v.String()
-			default:
-				value = v.Type().String() + " value"
+		case reflect.Map:
+			var indValue = reflect.ValueOf(obj)
+			if indValue == reflect.ValueOf(nil) {
+				return
+			}
+			iter := indValue.MapRange()
+			for iter.Next() {
+				k, v := iter.Key(), iter.Value()
+				parameterAddToHeaderOrQuery(headerOrQueryParams, fmt.Sprintf("%s[%s]", keyPrefix, k.String()), v.Interface(), collectionType)
+			}
+			return
+
+		case reflect.Interface:
+			fallthrough
+		case reflect.Ptr:
+			parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, v.Elem().Interface(), collectionType)
+			return
+
+		case reflect.Int, reflect.Int8, reflect.Int16,
+			reflect.Int32, reflect.Int64:
+			value = strconv.FormatInt(v.Int(), 10)
+		case reflect.Uint, reflect.Uint8, reflect.Uint16,
+			reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+			value = strconv.FormatUint(v.Uint(), 10)
+		case reflect.Float32, reflect.Float64:
+			value = strconv.FormatFloat(v.Float(), 'g', -1, 32)
+		case reflect.Bool:
+			value = strconv.FormatBool(v.Bool())
+		case reflect.String:
+			value = v.String()
+		default:
+			value = v.Type().String() + " value"
 		}
 	}
 
 	switch valuesMap := headerOrQueryParams.(type) {
-		case url.Values:
-			if collectionType == "csv" && valuesMap.Get(keyPrefix) != "" {
-				valuesMap.Set(keyPrefix, valuesMap.Get(keyPrefix) + "," + value)
-			} else {
-				valuesMap.Add(keyPrefix, value)
-			}
-			break
-		case map[string]string:
-			valuesMap[keyPrefix] = value
-			break
+	case url.Values:
+		if collectionType == "csv" && valuesMap.Get(keyPrefix) != "" {
+			valuesMap.Set(keyPrefix, valuesMap.Get(keyPrefix)+","+value)
+		} else {
+			valuesMap.Add(keyPrefix, value)
+		}
+		break
+	case map[string]string:
+		valuesMap[keyPrefix] = value
+		break
 	}
 }
 
@@ -284,9 +283,9 @@ func (c *APIClient) GetConfig() *Configuration {
 }
 
 type formFile struct {
-		fileBytes []byte
-		fileName string
-		formFileName string
+	fileBytes    []byte
+	fileName     string
+	formFileName string
 }
 
 // prepareRequest build the request
@@ -340,11 +339,11 @@ func (c *APIClient) prepareRequest(
 				w.Boundary()
 				part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
 				if err != nil {
-						return nil, err
+					return nil, err
 				}
 				_, err = part.Write(formFile.fileBytes)
 				if err != nil {
-						return nil, err
+					return nil, err
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -20,13 +20,12 @@ import (
 	"strings"
 )
 
-
 // FactionsAPIService FactionsAPI service
 type FactionsAPIService service
 
 type ApiGetFactionRequest struct {
-	ctx context.Context
-	ApiService *FactionsAPIService
+	ctx           context.Context
+	ApiService    *FactionsAPIService
 	factionSymbol string
 }
 
@@ -39,26 +38,27 @@ GetFaction Get Faction
 
 View the details of a faction.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param factionSymbol The faction symbol
- @return ApiGetFactionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param factionSymbol The faction symbol
+	@return ApiGetFactionRequest
 */
 func (a *FactionsAPIService) GetFaction(ctx context.Context, factionSymbol string) ApiGetFactionRequest {
 	return ApiGetFactionRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:    a,
+		ctx:           ctx,
 		factionSymbol: factionSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetFaction200Response
+//
+//	@return GetFaction200Response
 func (a *FactionsAPIService) GetFactionExecute(r ApiGetFactionRequest) (*GetFaction200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetFaction200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetFaction200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FactionsAPIService.GetFaction")
@@ -128,10 +128,10 @@ func (a *FactionsAPIService) GetFactionExecute(r ApiGetFactionRequest) (*GetFact
 }
 
 type ApiGetFactionsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FactionsAPIService
-	page *int32
-	limit *int32
+	page       *int32
+	limit      *int32
 }
 
 // What entry offset to request
@@ -155,24 +155,25 @@ GetFactions List Factions
 
 Return a paginated list of all the factions in the game.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetFactionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetFactionsRequest
 */
 func (a *FactionsAPIService) GetFactions(ctx context.Context) ApiGetFactionsRequest {
 	return ApiGetFactionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetFactions200Response
+//
+//	@return GetFactions200Response
 func (a *FactionsAPIService) GetFactionsExecute(r ApiGetFactionsRequest) (*GetFactions200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetFactions200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetFactions200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FactionsAPIService.GetFactions")
