@@ -49,6 +49,10 @@ func (sys SystemSymbol) String() string {
 	return string(sys)
 }
 
+func (sys SystemSymbol) Equals(sys2 SystemSymbol) bool {
+	return string(sys) == string(sys2)
+}
+
 func (wp WaypointSymbol) SystemSymbol() SystemSymbol {
 	parts := strings.SplitN(string(wp), "-", 3)
 	return SystemSymbol(fmt.Sprintf("%s-%s", parts[0], parts[1]))
@@ -56,6 +60,10 @@ func (wp WaypointSymbol) SystemSymbol() SystemSymbol {
 
 func (wp WaypointSymbol) String() string {
 	return string(wp)
+}
+
+func (wp WaypointSymbol) Equals(wp2 WaypointSymbol) bool {
+	return string(wp) == string(wp2)
 }
 
 type baseClient struct {
