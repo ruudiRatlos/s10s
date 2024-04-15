@@ -78,9 +78,9 @@ func (c *SystemsAPI) AllSystems(ctx context.Context) (<-chan *api.System, int, e
 }
 
 // GetSystem returns the details of a system
-func (c *SystemsAPI) GetSystem(ctx context.Context, systemSymbol string) (*api.System, error) {
+func (c *SystemsAPI) GetSystem(ctx context.Context, sys SystemSymbol) (*api.System, error) {
 	wait := 1 * time.Second
-	req := c.c.SystemsAPI.GetSystem(ctx, systemSymbol)
+	req := c.c.SystemsAPI.GetSystem(ctx, sys.String())
 redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
@@ -93,7 +93,7 @@ redo:
 		goto redo
 	}
 	if err != nil {
-		return nil, fmt.Errorf("could not GetSystem: %w", err)
+		return nil, fmt.Errorf("could not GetSystem(%q): %w", sys.String(), err)
 	}
 	c.emitSystem(ctx, &res.Data)
 	return &res.Data, nil
@@ -107,7 +107,7 @@ func (c *SystemsAPI) GetSystemWaypoints(ctx context.Context, sys SystemSymbol) (
 	)
 	for {
 		wait := 1 * time.Second
-		req := c.c.SystemsAPI.GetSystemWaypoints(ctx, string(sys)).Page(page).Limit(limit)
+		req := c.c.SystemsAPI.GetSystemWaypoints(ctx, sys.String()).Page(page).Limit(limit)
 	redo:
 		sR, httpR, err := req.Execute() //nolint:bodyclose
 		err = enhanceErr(err, httpR)
@@ -137,7 +137,8 @@ func (c *SystemsAPI) GetSystemWaypoints(ctx context.Context, sys SystemSymbol) (
 // GetWaypoint
 func (c *SystemsAPI) GetWaypoint(ctx context.Context, wpSym WaypointSymbol) (*api.Waypoint, error) {
 	wait := 1 * time.Second
-	req := c.c.SystemsAPI.GetWaypoint(ctx, string(wpSym.SystemSymbol()), string(wpSym))
+	req := c.c.SystemsAPI.GetWaypoint(ctx,
+		wpSym.SystemSymbol().String(), wpSym.String())
 redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
@@ -164,7 +165,7 @@ func (c *SystemsAPI) GetMarket(ctx context.Context, wpSym WaypointSymbol) (*api.
 	wait := 1 * time.Second
 	system := wpSym.SystemSymbol()
 redo:
-	mRes, httpR, err := c.c.SystemsAPI.GetMarket(ctx, string(system), string(wpSym)).Execute() //nolint:bodyclose
+	mRes, httpR, err := c.c.SystemsAPI.GetMarket(ctx, system.String(), wpSym.String()).Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
 		c.l.DebugContext(ctx, "hit ratelimit", "ops", "SystemsAPI.GetMarket", "wait", wait)
@@ -201,7 +202,7 @@ redo:
 		goto redo
 	}
 	if err != nil {
-		return nil, fmt.Errorf("could not GetShipyard (%q): %w", string(wpSym), err)
+		return nil, fmt.Errorf("could not GetShipyard (%q): %w", wpSym.String(), err)
 	}
 	c.emitShipyard(ctx, &res.Data)
 	return &res.Data, nil
