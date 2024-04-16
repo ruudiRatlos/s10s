@@ -35,8 +35,7 @@ GET https://api.spacetraders.io/v2/my/ships/{shipSymbol}/scrap was renamed to Ge
 ```bash
 rm -r openapi
 mkdir openapi
-openapi-generator generate -g go -i "https://stoplight.io/api/v1/projects/spacetraders/spacetraders/nodes/reference/SpaceTraders.json?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle" --skip-validate-spec --package-name "api" -o openapi -c openapi-cfg.json --git-host github.com --git-repo-id s10s --git-user-id ruudiRatlos
-gfind openapi/ -type f -print0 | xargs -0 -n 1 perl -i -pe 's!openapiclient "github.com/ruudiRatlos/s10s"!openapiclient "github.com/ruudiRatlos/s10s/openapi"!'
+openapi-generator generate -g go -i "https://stoplight.io/api/v1/projects/spacetraders/spacetraders/nodes/reference/SpaceTraders.json?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle" --skip-validate-spec -o openapi -c openapi-cfg.json --git-host github.com --git-repo-id s10s --git-user-id ruudiRatlos
 gofmt -s -w ./openapi
 ```
 
