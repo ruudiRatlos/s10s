@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	api "github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func (bc *baseClient) ContextWithToken(ctx context.Context) context.Context {

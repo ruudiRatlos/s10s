@@ -3,7 +3,7 @@ package mechanics
 import (
 	"testing"
 
-	"github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func TestDistance(t *testing.T) {

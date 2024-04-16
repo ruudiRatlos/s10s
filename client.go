@@ -3,7 +3,7 @@ package s10s
 import (
 	"context"
 
-	api "github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 // Client represents a retrying REST API Client for spacetraders

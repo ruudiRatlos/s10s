@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	api "github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 // ListShips is an alias for GetMyShips
@@ -899,4 +899,16 @@ func CopyShipState(to, from *api.Ship) {
 	to.Nav = from.Nav
 	to.Reactor = from.Reactor
 	to.Registration = from.Registration
+}
+
+// CopyAgent creates a new copy of the given agent
+func CopyAgent(from *api.Agent) *api.Agent {
+	to := api.NewAgentWithDefaults()
+	to.AccountId = from.AccountId
+	to.Credits = from.Credits
+	to.Headquarters = from.Headquarters
+	to.ShipCount = from.ShipCount
+	to.StartingFaction = from.StartingFaction
+	to.Symbol = from.Symbol
+	return to
 }

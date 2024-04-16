@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	api "github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 type APIError int

@@ -3,7 +3,7 @@ package s10s
 import (
 	"context"
 
-	api "github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 type FireEventer interface {

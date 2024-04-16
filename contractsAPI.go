@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	api "github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 // ListContracts returns a list of all your contracts.

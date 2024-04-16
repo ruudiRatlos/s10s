@@ -3,7 +3,7 @@ package mechanics
 import (
 	"time"
 
-	"github.com/ruudiRatlos/s10s/api"
+	api "github.com/ruudiRatlos/s10s/openapi"
 )
 
 // CalcTravelTime returns the duration of travel for the given ship and distance

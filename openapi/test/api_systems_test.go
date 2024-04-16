@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
 )
 
 func Test_api_SystemsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetConstruction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 		var waypointSymbol string
@@ -39,7 +39,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetJumpGate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 		var waypointSymbol string
@@ -54,7 +54,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetMarket", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 		var waypointSymbol string
@@ -69,7 +69,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetShipyard", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 		var waypointSymbol string
@@ -84,7 +84,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetSystem", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 
@@ -98,7 +98,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetSystemWaypoints", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 
@@ -112,7 +112,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetSystems", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SystemsAPI.GetSystems(context.Background()).Execute()
 
@@ -124,7 +124,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService GetWaypoint", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 		var waypointSymbol string
@@ -139,7 +139,7 @@ func Test_api_SystemsAPIService(t *testing.T) {
 
 	t.Run("Test SystemsAPIService SupplyConstruction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var systemSymbol string
 		var waypointSymbol string

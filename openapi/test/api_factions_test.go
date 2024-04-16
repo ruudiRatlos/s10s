@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
 )
 
 func Test_api_FactionsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_FactionsAPIService(t *testing.T) {
 
 	t.Run("Test FactionsAPIService GetFaction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var factionSymbol string
 
@@ -38,7 +38,7 @@ func Test_api_FactionsAPIService(t *testing.T) {
 
 	t.Run("Test FactionsAPIService GetFactions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FactionsAPI.GetFactions(context.Background()).Execute()
 

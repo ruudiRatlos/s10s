@@ -58,7 +58,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -128,7 +128,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -198,7 +198,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -268,7 +268,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -338,7 +338,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -408,7 +408,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -478,7 +478,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -551,7 +551,7 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -623,7 +623,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -693,7 +693,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -763,7 +763,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -833,7 +833,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -901,7 +901,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -971,7 +971,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1041,7 +1041,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1111,7 +1111,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1181,7 +1181,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1253,7 +1253,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1325,7 +1325,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1397,7 +1397,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1469,7 +1469,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1539,7 +1539,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1609,7 +1609,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1681,7 +1681,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1753,7 +1753,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1819,7 +1819,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1891,7 +1891,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -1963,7 +1963,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -2033,7 +2033,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -2103,7 +2103,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -2175,7 +2175,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -2247,7 +2247,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -2317,7 +2317,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
@@ -2389,7 +2389,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ruudiRatlos/s10s/api"
+	openapiclient "github.com/ruudiRatlos/s10s/openapi"
 )
 
 func main() {
