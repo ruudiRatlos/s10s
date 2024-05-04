@@ -2,10 +2,8 @@ package s10s
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 	"math/rand"
-	"strings"
 	"time"
 
 	api "github.com/ruudiRatlos/s10s/openapi"
@@ -17,53 +15,6 @@ func (bc *baseClient) ContextWithToken(ctx context.Context) context.Context {
 
 func contextWithToken(ctx context.Context, token string) context.Context {
 	return context.WithValue(ctx, api.ContextAccessToken, token)
-}
-
-// SystemSymbol identifies a system, containing one dash
-type SystemSymbol string
-
-// WaypointSymbol identifies a waypoint with a specific system, prefixed with their respective SystemSymbol
-type WaypointSymbol string
-
-func NewWaypointSymbol(wp string) (WaypointSymbol, error) {
-	parts := strings.SplitN(string(wp), "-", 3)
-	if len(parts) != 3 || strings.Count(wp, "-") != 2 {
-		return "", fmt.Errorf("%q does not contain 2 dashes. ", wp)
-	}
-	return WaypointSymbol(wp), nil
-}
-
-func MustNewWaypointSymbol(wp string) WaypointSymbol {
-	wayp, err := NewWaypointSymbol(wp)
-	if err != nil {
-		panic(err)
-	}
-	return wayp
-}
-
-func NewSystemSymbol(sys string) SystemSymbol {
-	return SystemSymbol(sys)
-}
-
-func (sys SystemSymbol) String() string {
-	return string(sys)
-}
-
-func (sys SystemSymbol) Equals(sys2 SystemSymbol) bool {
-	return string(sys) == string(sys2)
-}
-
-func (wp WaypointSymbol) SystemSymbol() SystemSymbol {
-	parts := strings.SplitN(string(wp), "-", 3)
-	return SystemSymbol(fmt.Sprintf("%s-%s", parts[0], parts[1]))
-}
-
-func (wp WaypointSymbol) String() string {
-	return string(wp)
-}
-
-func (wp WaypointSymbol) Equals(wp2 WaypointSymbol) bool {
-	return string(wp) == string(wp2)
 }
 
 type baseClient struct {

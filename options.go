@@ -28,6 +28,7 @@ func WithEvents(em FireEventer) ClientOption {
 
 func WithHTTPClient(httpClient *http.Client) ClientOption {
 	return func(c *Client) error {
+		c.cfg.HTTPClient = httpClient
 		return nil
 	}
 }

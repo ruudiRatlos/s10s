@@ -452,6 +452,29 @@ redo:
 	return nil
 }
 
+// GetShipNav
+func (c *FleetAPI) GetShipNav(ctx context.Context, ship *api.Ship) error {
+	wait := 1 * time.Second
+	req := c.c.FleetAPI.GetShipNav(ctx, ship.Symbol)
+redo:
+	res, httpR, err := req.Execute() //nolint:bodyclose
+	err = enhanceErr(err, httpR)
+	if errors.Is(err, ErrHTTPStatus429) || errors.Is(err, ErrHTTPStatus409) {
+		c.l.DebugContext(ctx, "hit error", "ops", "FleetAPI.PatchShipNav", "error", err, "wait", wait)
+		if err := c.SleepWithJitter(ctx, wait); err != nil {
+			return err
+		}
+		wait = 2 * wait
+		goto redo
+	}
+	if err != nil {
+		return fmt.Errorf("could not PatchShipNav: %w", err)
+	}
+	ship.Nav = res.Data
+	c.emitShipChange(ctx, ship)
+	return nil
+}
+
 // WarpShip
 func (c *FleetAPI) WarpShip(ctx context.Context, ship *api.Ship, wpSym WaypointSymbol) (*api.WarpShip200ResponseData, error) {
 	wait := 1 * time.Second
@@ -587,7 +610,6 @@ redo:
 }
 
 // Refuels a ship.
-
 // If fromCargo is false, fuel is bought from the local market.
 // If units<0, ship is refueled to the maximum.
 func (c *FleetAPI) RefuelShip(ctx context.Context, ship *api.Ship, fromCargo bool, units int32) (*api.RefuelShip200ResponseData, error) {
