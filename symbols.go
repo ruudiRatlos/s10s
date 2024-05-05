@@ -29,7 +29,7 @@ func MustWaypointSymbolFromValue(wp string) WaypointSymbol {
 	return wayp
 }
 
-func NewSystemSymbol(sys string) SystemSymbol {
+func SystemSymbolFromValue(sys string) SystemSymbol {
 	return SystemSymbol(sys)
 }
 
@@ -64,10 +64,10 @@ func SystemSymbolFrom[T SysLocationeers](v T) SystemSymbol {
 		return MustWaypointSymbolFromValue(a.Headquarters).SystemSymbol()
 	}
 	if s, ok := any(v).(*api.Ship); ok {
-		return NewSystemSymbol(s.Nav.SystemSymbol)
+		return SystemSymbolFromValue(s.Nav.SystemSymbol)
 	}
 	if _, ok := any(v).(*api.System); ok {
-		return NewSystemSymbol(v.GetSymbol())
+		return SystemSymbolFromValue(v.GetSymbol())
 	}
 	return MustWaypointSymbolFromValue(v.GetSymbol()).SystemSymbol()
 }
