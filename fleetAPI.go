@@ -713,6 +713,7 @@ redo:
 		inv := api.NewShipCargoItem(good, "", "", units)
 		target.Cargo.Inventory = append(target.Cargo.Inventory, *inv)
 	}
+	target.Cargo.Units += units
 	c.emitShipChange(ctx, target)
 	return nil
 }
