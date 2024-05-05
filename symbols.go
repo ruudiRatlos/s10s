@@ -73,7 +73,7 @@ func SystemSymbolFrom[T SysLocationeers](v T) SystemSymbol {
 }
 
 type Locationeers interface {
-	*api.Construction | *api.Waypoint | *api.Shipyard | *api.Agent | *api.JumpGate | *api.Ship | *api.Survey
+	*api.Construction | *api.Waypoint | *api.Shipyard | *api.Agent | *api.JumpGate | *api.Ship | *api.Survey | *api.Market
 	GetSymbol() string
 }
 
