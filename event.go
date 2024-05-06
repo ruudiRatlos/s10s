@@ -12,7 +12,6 @@ type FireEventer interface {
 
 const (
 	EvAgentChange                    string = "s10s.agent.change"
-	EvAgentPublic                    string = "s10s.agent.public"
 	EvConstructionChange             string = "s10s.construction.change"
 	EvTransactionNew                 string = "s10s.transaction.new"
 	EvExtractionNew                  string = "s10s.extraction.new"
@@ -208,17 +207,6 @@ func (bc *baseClient) emitAgentChange(ctx context.Context, agent *api.Agent) {
 		"Agent":   agent,
 	}
 	err := bc.fireEvent(EvAgentChange, d)
-	if err != nil {
-		bc.l.WarnContext(ctx, "event emit", "e", d, "error", err)
-	}
-}
-
-func (bc *baseClient) emitPublicAgent(ctx context.Context, agent *api.Agent) {
-	d := map[string]any{
-		"Context": ctx,
-		"Agent":   agent,
-	}
-	err := bc.fireEvent(EvAgentPublic, d)
 	if err != nil {
 		bc.l.WarnContext(ctx, "event emit", "e", d, "error", err)
 	}

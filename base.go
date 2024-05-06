@@ -48,7 +48,7 @@ func (s *baseClient) Sleep(ctx context.Context, wait time.Duration) error {
 
 // SleepWithJitter sleeps for at least the given duration and adds a random increment up to 10% of the given duration unless interrupted by a canceled Context
 func (s *baseClient) SleepWithJitter(ctx context.Context, wait time.Duration) error {
-	jitter := rand.Intn(int(wait.Milliseconds())) //nolint:gosec
+	jitter := rand.Intn(int(wait.Milliseconds()*10) / 100) //nolint:gosec
 	wait = wait + time.Duration(jitter)*time.Millisecond
 	select {
 	case <-time.After(wait):

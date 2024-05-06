@@ -77,7 +77,7 @@ func (c *AgentsAPI) AllAgents(ctx context.Context) (<-chan *api.Agent, int, erro
 			}
 			agents = append(agents, aR.Data...)
 			for _, agent := range agents {
-				c.emitPublicAgent(ctx, &agent) //nolint:gosec
+				c.emitAgentChange(ctx, &agent) //nolint:gosec
 				select {
 				case out <- &agent: //nolint:gosec
 				case <-ctx.Done():
@@ -119,6 +119,6 @@ redo:
 		return nil, fmt.Errorf("could not GetPublicAgent: %w", err)
 	}
 
-	aa.emitPublicAgent(ctx, &res.Data)
+	aa.emitAgentChange(ctx, &res.Data)
 	return &res.Data, nil
 }
