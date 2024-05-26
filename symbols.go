@@ -55,7 +55,7 @@ func (wp WaypointSymbol) Equals(wp2 WaypointSymbol) bool {
 }
 
 type SysLocationeers interface {
-	*api.System | *api.Construction | *api.Waypoint | *api.Shipyard | *api.Agent | *api.JumpGate | *api.Ship
+	*api.System | *api.Construction | *api.Waypoint | *api.Shipyard | *api.Agent | *api.JumpGate | *api.Ship | *api.Market
 	GetSymbol() string
 }
 
