@@ -726,7 +726,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.NegotiateContract", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.NegotiateContract",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
@@ -748,7 +751,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.GetMounts", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.GetMounts",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
@@ -770,7 +776,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.InstallMount", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.InstallMount",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
@@ -797,7 +806,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.InstallMount", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.RemoveMount",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
@@ -825,7 +837,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.GetScrapShip", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.GetScrapShip",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
@@ -848,7 +863,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.GetScrapShip", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.ScrapShip",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
@@ -871,7 +889,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.RepairShip", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.GetRepairShip",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
@@ -892,7 +913,10 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.RepairShip", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit",
+			"ops", "FleetAPI.RepairShip",
+			"wait", wait,
+			"ship", ship.Symbol)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
