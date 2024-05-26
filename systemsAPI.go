@@ -143,7 +143,7 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) {
-		c.l.DebugContext(ctx, "hit ratelimit", "ops", "FleetAPI.CreateChart", "wait", wait)
+		c.l.DebugContext(ctx, "hit ratelimit", "ops", "SystemsAPI.GetWaypoint", "wait", wait)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return nil, err
 		}
