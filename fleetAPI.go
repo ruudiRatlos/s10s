@@ -911,6 +911,7 @@ redo:
 
 // CopyShipState changes all public properties of to to the values of from
 func CopyShipState(to, from *api.Ship) {
+	to.Symbol = from.Symbol
 	to.Cargo = from.Cargo
 	to.Cooldown = from.Cooldown
 	to.Crew = from.Crew
