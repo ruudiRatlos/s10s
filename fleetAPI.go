@@ -433,7 +433,7 @@ redo:
 	res, httpR, err := req.Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
 	if errors.Is(err, ErrHTTPStatus429) || errors.Is(err, ErrHTTPStatus409) {
-		c.l.DebugContext(ctx, "hit error", "ops", "FleetAPI.PatchShipNav", "error", err, "wait", wait)
+		c.l.DebugContext(ctx, "hit error", "ops", "FleetAPI.PatchShipNav", "wait", wait)
 		if err := c.SleepWithJitter(ctx, wait); err != nil {
 			return err
 		}
