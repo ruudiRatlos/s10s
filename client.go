@@ -2,6 +2,8 @@ package s10s
 
 import (
 	"context"
+	"errors"
+	"time"
 
 	api "github.com/ruudiRatlos/s10s/openapi"
 )
@@ -48,8 +50,15 @@ func NewClient(opts ...ClientOption) (*Client, error) {
 
 	ctx := contextWithToken(context.Background(), c.token)
 
+	wait := 1 * time.Second
+redo:
 	_, httpR, err := c.c.DefaultAPI.GetStatus(ctx).Execute() //nolint:bodyclose
 	err = enhanceErr(err, httpR)
+	if errors.Is(err, ErrHTTPStatus429) {
+		time.Sleep(wait)
+		wait = 2 * wait
+		goto redo
+	}
 	if err != nil {
 		return nil, err
 	}
