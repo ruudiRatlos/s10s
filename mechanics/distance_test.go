@@ -32,3 +32,31 @@ func TestDistanceFromCenter(t *testing.T) {
 		}
 	}
 }
+
+func TestHeading(t *testing.T) {
+	testcases := []struct {
+		dir string
+		wp  Coorder
+		h   int
+	}{
+		{"N", &api.System{X: 0, Y: 1}, 0},
+		{"NE", &api.System{X: 1, Y: 1}, 45},
+		{"E", &api.System{X: 1, Y: 0}, 90},
+		{"SE", &api.Waypoint{X: 1, Y: -1}, 135},
+		{"S", &api.Waypoint{X: 0, Y: -1}, 180},
+		{"SW", &api.Waypoint{X: -1, Y: -1}, 225},
+		{"W", &api.Waypoint{X: -1, Y: 0}, 270},
+		{"NW", &api.Waypoint{X: -1, Y: 1}, 315},
+
+		{"0", &api.Waypoint{X: 0, Y: 0}, 0},
+	}
+	for _, tc := range testcases {
+		t.Run(tc.dir, func(t *testing.T) {
+			g := Heading(tc.wp)
+			if g != tc.h {
+				t.Errorf("x=%d y=%d got: %v, want: %v",
+					tc.wp.GetX(), tc.wp.GetY(), g, tc.h)
+			}
+		})
+	}
+}
